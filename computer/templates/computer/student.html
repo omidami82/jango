@@ -1,0 +1,37 @@
+{% extends 'computer/base.html' %}
+{% block title %}دانشجویان{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold text-blue-900 mb-6">لیست دانشجویان</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for student in students %}
+        <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-6">
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 bg-green-100 text-green-900 rounded-full flex items-center justify-center text-xl font-bold">
+                    {{ student.first_name|first }}{{ student.last_name|first }}
+                </div>
+                <div>
+                    <a href="{% url 'computer:student_detail' student.pk %}"
+                       class="text-lg font-semibold text-blue-900 hover:text-blue-600">
+                        {{ student.first_name }} {{ student.last_name }}
+                    </a>
+                    <p class="text-sm text-gray-500">شماره دانشجویی: {{ student.student_id }}</p>
+                </div>
+            </div>
+
+            <div class="mt-4 text-sm text-gray-600 space-y-1">
+                <p> {{ student.email }}</p>
+                <p> تعداد دروس: {{ student.courses.count }}</p>
+            </div>
+
+            <a href="{% url 'computer:student_detail' student.pk %}"
+               class="mt-4 inline-block w-full text-center bg-blue-900 hover:bg-blue-800 text-white py-2 rounded-lg transition text-sm">
+                مشاهده دروس
+            </a>
+        </div>
+    {% empty %}
+        <p class="text-gray-500">هیچ دانشجویی ثبت نشده است.</p>
+    {% endfor %}
+</div>
+{% endblock %}

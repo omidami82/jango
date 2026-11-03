@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>سامانه جامع آموزش هم‌آوا - دانشگاه ارومیه</title>
+    <!-- فقط و فقط بوت‌استرپ -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <!-- ==================== منوی ناوبری (Navbar) ==================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'computer:home' %}">هم‌آوا</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'computer:home' %}">خانه</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- لینک لیست اساتید -->
+                        <a class="nav-link" href="{% url 'computer:professor_list' %}">لیست اساتید</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- لینک پنل ادمین -->
+                        <a class="nav-link" href="/admin/" target="_blank">پنل ادمین</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- هدر صفحه (لوگو و نام دانشگاه) -->
+    <div class="container mt-3 mb-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="text-center">
+                <h4 class="text-primary fw-bold mb-0">دانشگاه ارومیه</h4>
+                <small class="text-primary">Urmia University</small>
+            </div>
+            <div class="text-end">
+                <h5 class="text-primary fw-bold mb-0">سامانه جامع آموزش هم‌آوا</h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- بخش سه کارت -->
+    <div class="container mb-5">
+        <div class="row g-3 justify-content-center">
+
+            <!-- ==================== کارت ۱: ورود به سامانه ==================== -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-white text-end py-3 border-bottom">
+                        <span class="fw-bold text-secondary">ورود به سامانه ℹ️</span>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-light"></span>
+                                <input type="text" class="form-control bg-light" placeholder="نام کاربری" value="">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-light"></span>
+                                <input type="password" class="form-control bg-light" placeholder="رمز عبور" value="">
+                            </div>
+
+                            <div class="d-flex justify-content-end mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                                    <label class="form-check-label text-muted" for="rememberMe">مرا به خاطر بسپار</label>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-primary w-100 py-2 mb-3">ورود</button>
+
+                            <div class="text-center mb-3">
+                                <a href="#" class="text-decoration-none small text-muted">نام کاربری/کلمه عبور خود را فراموش کرده اید؟</a>
+                            </div>
+
+                            <button type="button" class="btn btn-outline-primary w-100 py-2 small">ورود از طریق پنجره واحد خدمات هوشمند دانشگاهی</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-white text-end py-3 border-bottom">
+                        <span class="fw-bold text-secondary">ثبت‌نام پذیرفته‌شدگان</span>
+                    </div>
+                    <div class="card-body d-flex flex-column justify-content-center p-4">
+                        <div class="bg-success text-white text-center p-4 w-100 mb-4" style="border-radius: 8px;">
+                            <h4 class="fw-bold mb-4">ورود به سامانه ثبت نام<br>کارشناسی ارشد ۱۴۰۵</h4>
+                            <p class="mb-1 fw-bold">تاریخ شروع 1405/08/01 09:00</p>
+                            <p class="mb-4 fw-bold">تاریخ پایان 1405/08/07 23:30</p>
+                            <div class="fs-1">✅</div>
+                        </div>
+                        <!-- دکمه اضافه شده برای لیست اساتید -->
+                        <div class="text-center mt-auto">
+                            <a href="{% url 'computer:professor_list' %}" class="btn btn-success w-100 py-2 fw-bold">مشاهده لیست اساتید دانشگاه</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== کارت ۳: اطلاعیه‌ها ==================== -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-white text-end py-3 border-bottom">
+                        <span class="fw-bold text-secondary">اطلاعیه 📄</span>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <div class="bg-primary bg-opacity-10 p-3 mb-3 border border-primary border-opacity-25" style="border-radius: 5px;">
+                            <p class="mb-0 text-primary small text-center fw-bold">قابل توجه دانشجویان عزیز در خصوص حضور و غیاب دروس</p>
+                        </div>
+                        <div class="bg-primary bg-opacity-10 p-3 mb-3 border border-primary border-opacity-25" style="border-radius: 5px;">
+                            <p class="mb-0 text-primary small text-center fw-bold">راهنمای تصویری انواع درخواست های سامانه هم آوا</p>
+                        </div>
+                        <div class="bg-primary bg-opacity-10 p-3 mb-3 border border-primary border-opacity-25" style="border-radius: 5px;">
+                            <p class="mb-0 text-primary small text-center fw-bold">آیین نامه ها و شیوه نامه های آموزشی دانشگاه برای تمامی مقاطع تحصیلی کاردانی، کارشناسی، کارشناسی ارشد و دکتری تخصصی</p>
+                        </div>
+                        <!-- دکمه اضافه شده برای پنل ادمین -->
+                        <div class="text-center mt-auto">
+                            <a href="/admin/" target="_blank" class="btn btn-outline-secondary w-100 py-2">ورود به پنل مدیریت (ادمین)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- اسکریپت بوت‌استرپ برای کارکرد منوی همبرگری در موبایل -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

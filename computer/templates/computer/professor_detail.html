@@ -1,0 +1,46 @@
+{% extends 'computer/base.html' %}
+{% block title %}{{ professor }}{% endblock %}
+
+{% block content %}
+
+<!-- کارت اطلاعات استاد -->
+<div class="bg-white rounded-xl shadow p-6 mb-8">
+    <h1 class="text-2xl font-bold text-blue-900">دکتر {{ professor.first_name }} {{ professor.last_name }}</h1>
+    <div class="mt-3 text-gray-700 space-y-1">
+        <p>دانشکده: {{ professor.department }}</p>
+        <p>ایمیل: {{ professor.email }}</p>
+        <p>کد ملی: {{ professor.national_code }}</p>
+    </div>
+</div>
+
+<!-- لیست دروس -->
+<h2 class="text-xl font-bold text-blue-900 mb-4">دروس این استاد</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {% for course in courses %}
+        <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-5">
+            <a href="{% url 'computer:course_detail' course.pk %}"
+               class="text-lg font-semibold text-blue-900 hover:text-blue-600">
+                {{ course.title }}
+            </a>
+            <p class="text-sm text-gray-500 mt-1">کد درس: {{ course.code }}</p>
+            <p class="text-sm text-gray-500">واحد: {{ course.units }}</p>
+            <p class="text-sm text-gray-600 mt-2">{{ course.description|truncatewords:10 }}</p>
+
+            <a href="{% url 'computer:course_detail' course.pk %}"
+               class="mt-3 inline-block text-sm text-blue-700 hover:underline">
+                جزئیات درس →
+            </a>
+        </div>
+    {% empty %}
+        <p class="text-gray-500">این استاد درسی ندارد.</p>
+    {% endfor %}
+</div>
+
+<div class="mt-8">
+    <a href="{% url 'computer:professor_list' %}" class="text-blue-700 hover:underline">
+        ← بازگشت به لیست اساتید
+    </a>
+</div>
+
+{% endblock %}
