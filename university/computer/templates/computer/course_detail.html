@@ -1,0 +1,48 @@
+{% extends 'computer/base.html' %}
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+
+<div class="bg-white rounded-xl shadow p-6">
+    <h1 class="text-2xl font-bold text-blue-900">{{ course.title }}</h1>
+
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+        <p><span class="font-semibold">کد درس:</span> {{ course.code }}</p>
+        <p><span class="font-semibold">تعداد واحد:</span> {{ course.units }}</p>
+        <p>
+            <span class="font-semibold">استاد:</span>
+            {% if course.professor %}
+                <a href="{% url 'computer:professor_detail' course.professor.pk %}"
+                   class="text-blue-700 hover:underline">
+                    دکتر {{ course.professor.first_name }} {{ course.professor.last_name }}
+                </a>
+            {% else %}
+                تعیین نشده
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="mt-6">
+        <h2 class="font-semibold text-blue-900 mb-2">توضیحات</h2>
+        <p class="text-gray-700 leading-7">{{ course.description|default:"توضیحی ثبت نشده است." }}</p>
+    </div>
+
+    <div class="mt-6">
+        <h2 class="font-semibold text-blue-900 mb-2">دانشجویان این درس ({{ course.students.count }})</h2>
+        <ul class="list-disc pr-6 text-gray-700">
+            {% for student in course.students.all %}
+                <li>{{ student.first_name }} {{ student.last_name }} — {{ student.student_id }}</li>
+            {% empty %}
+                <li class="text-gray-500">هیچ دانشجویی ثبت‌نام نکرده است.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="mt-8">
+        <a href="{% url 'computer:professor_list' %}" class="text-blue-700 hover:underline">
+            ← بازگشت
+        </a>
+    </div>
+</div>
+
+{% endblock %}
